@@ -20,8 +20,13 @@ class SportTeam:
 
     @classmethod
     def fiche(cls,states_fiche):
-        with open(states_fiche) as file:
-            return cls.chaine(file.readline().strip())
+        try:
+            with open(states_fiche) as file:
+                return cls.chaine(file.readline().strip())
+        except:
+            print("Fichier non trouvé")
+            # raise ValueError("Fichier non trouvé")
+
 
     def getAmande(self):
         self.totalAmande += SportTeam.prix_amande
@@ -72,9 +77,11 @@ class Football(SportTeam):
 
 equipe1 =  Football("Barcelone",42,6,1)
 equipe2 = Football("Real",32,5,3)
+#equipe3 = Football.fiche('djime.txt')
 
 print(equipe1.states())
 print(equipe2.states())
+#print(equipe3.states())
 
 
 #print(help(Basketball))
